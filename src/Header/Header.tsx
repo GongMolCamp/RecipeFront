@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../CSS/Header.css';
 
-type HeaderProps = {
-  GoHome: () => void;
-  GoTaste: () => void;
-  GoRecommend: () => void;
-  GoPopular: () => void;
-  GoLogin: () => void;
-}
+const Header: React.FC = () => {
+  const navigate = useNavigate();
 
-const Header: React.FC<HeaderProps> = (
-  {GoHome, GoTaste, GoRecommend, GoPopular, GoLogin}
-) => {
   return (
     <div className='Header flex justify-between items-center'>
-      <div className='Header-Logo text-5xl text-center' onClick={GoHome}>
+      <div className='Header-Logo text-5xl text-center' onClick={() => navigate('/')}>
         <p>냉장고를 부탁해</p>
       </div>
       <div className='Menu'>
-        <div onClick={GoTaste}>내취향 입력</div>
-        <div onClick={GoRecommend}>추천 레시피</div>
-        <div onClick={GoPopular}>인기 레시피</div>
-        <div onClick={GoLogin}>로그인</div>
+        <div onClick={() => navigate('/ingredient')}>내취향 입력</div>
+        <div onClick={() => navigate('/recommend')}>추천 레시피</div>
+        <div onClick={() => navigate('/popular')}>인기 레시피</div>
+        <div onClick={() => navigate('/login')}>로그인</div>
       </div>
     </div>
   );
