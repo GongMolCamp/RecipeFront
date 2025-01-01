@@ -1,0 +1,24 @@
+.Home{
+    width: 850px;
+    height: 100vh;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+    font-family: "Jua", sans-serif;
+}
+
+.Home-Title{
+    width: 850px;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.Home-Content{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.Pink{
+    color: #FFB2B2;
+}
