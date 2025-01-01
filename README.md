@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+공몰캠 예준팀 레시피 추천 웹 사이트
 
 ## Available Scripts
 
