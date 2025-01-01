@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Ingredient: React.FC = () => {
   return (
-    <div>Hi</div>
+    <div>재료 입력</div>
   );
 };
 

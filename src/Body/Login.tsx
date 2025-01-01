@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Login: React.FC = () => {
   return (
-    <div>Hi</div>
+    <div>로그인</div>
   );
 };
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Recommend: React.FC = () => {
   return (
-    <div>Hi</div>
+    <div>추천 레시피</div>
   );
 };
 

@@ -1,0 +1,38 @@
+.Header{
+    width: 100%;
+    height: 200px;
+    background-color: #FFB2B2;
+    border-radius : 50px;
+    display: flex;
+    font-family: "Jua", sans-serif; 
+}
+
+.Header-Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* 필요에 따라 높이를 조정하세요 */
+}
+
+.Header-Logo > p {
+    width: 500px;
+    height: 200px;
+    display: flex;
+    text-align: center;
+}
+
+.Menu{
+    width:600px;
+    height: 200px;
+    display: flex;
+    margin-left: auto;
+}
+
+.Menu >div{
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}

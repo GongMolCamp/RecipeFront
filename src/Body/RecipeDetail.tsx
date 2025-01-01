@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const RecipeDetail: React.FC = () => {
   return (
-    <div>Hi</div>
+    <div>레시피 상세</div>
   );
 };
 

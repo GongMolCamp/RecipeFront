@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Taste: React.FC = () => {
   return (
-    <div>Hi</div>
+    <div>취향 입력</div>
   );
 };
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Popular: React.FC = () => {
   return (
-    <div>Hi</div>
+    <div>인기 리스트</div>
   );
 };
 
