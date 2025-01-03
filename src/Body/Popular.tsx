@@ -15,7 +15,7 @@ async function custom_search (name : string) {
 }
 
 const Popular: React.FC = () => {
-  const test_data = ['닭갈비', '샐러드', '피자', '돈까스', '스파게티', '라면', '감자탕', '냉면'];
+  const test_data = ['닭갈비', '샐러드', '피자', '돈까스', '스파게티', '라면', '감자탕', '냉면', '짜장'];
   const test_data_list = test_data.map((name : string, idx : number) => (<FoodCardComponent name={name} img_src='정보없음'></FoodCardComponent>));
   //custom_search("닭갈비");
   //이미지 검색 추가.
