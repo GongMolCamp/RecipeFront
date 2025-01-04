@@ -1,30 +1,40 @@
 import React from 'react';
-import '../CSS/Popular.css';  // CSS 스타일을 따로 추가할 수 있습니다.
+import '../CSS/Popular.css';
 import FoodCardComponent from '../Components/FoodCardComponent';
-import { API_key, API_SRC } from '../API/custom_search_api_service';
+import { useQuery } from '@tanstack/react-query';
 
-async function custom_search (name : string) {
-  const response = await fetch(API_SRC + name);
+const fetchPopularQuery = async () => {
+  const response = await fetch('http://localhost:4000/services/food/popular');
   if (!response.ok) {
-    console.log('Something went wrong!');
-    throw new Error('Something went wrong!');
+    throw new Error('Network response was not ok');
   }
-  const data = await response.json();
-  console.log(data);
-  return '정보없음';
-}
+  return response.json();
+};
 
 const Popular: React.FC = () => {
-  const test_data = ['닭갈비', '샐러드', '피자', '돈까스', '스파게티', '라면', '감자탕', '냉면'];
-  const test_data_list = test_data.map((name : string, idx : number) => (<FoodCardComponent name={name} img_src='정보없음'></FoodCardComponent>));
-  //custom_search("닭갈비");
-  //이미지 검색 추가.
+
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ['posts'],  // 데이터 캐시 키
+    queryFn: fetchPopularQuery, // 데이터를 가져오는 함수
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+  
+  const data_list = data['item'].map(
+    (item : JSON, idx : number) => 
+      (<FoodCardComponent item={item}></FoodCardComponent>));
   return (
     <div className="app-container">
       
       {/* 카드 레이아웃 */}
       <div className="card-container">
-        {test_data_list}
+        {data_list}
       </div>
     </div>
   );
