@@ -33,11 +33,7 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
         <div>
           {
             login ? 
-              (<div className='flex h-[100%]'>
-                  <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/login', 'login')}>마이페이지</div>
-                  <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그아웃</div>
-              </div>
-              ) : 
+              (<div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그아웃</div>) : 
               (<div className={activeMenu === 'login' ? 'login active' : 'login non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그인</div>)
           }
         </div>
@@ -49,3 +45,18 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
 };
 
 export default Header;
+
+/* 로그인 후 마이페이지,로그아웃 버튼 추가
+<div>
+  {
+    login ? 
+      (<div className='flex h-[100%]'>
+          <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/login', 'login')}>마이페이지</div>
+          <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그아웃</div>
+      </div>
+      ) : 
+      (<div className={activeMenu === 'login' ? 'login active' : 'login non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그인</div>)
+  }
+</div>
+
+*/
