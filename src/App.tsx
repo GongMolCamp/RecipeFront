@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Header/Header';
 import './CSS/Header.css';
@@ -12,9 +12,15 @@ import RecipeDetail from './Body/RecipeDetail';
 import Recommend from './Body/Recommend';
 
 const App: React.FC = () => {
+  const [login, setLogin] = useState<boolean>(false);
+  const changeLogin = () => {
+    setLogin(!login);
+    
+  };
+
   return (
     <BrowserRouter basename="/react-test">
-      <Header />
+      <Header login={login} changeLogin={changeLogin}/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/ingredient' element={<Ingredient />} />
