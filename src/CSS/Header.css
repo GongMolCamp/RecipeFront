@@ -54,7 +54,8 @@
 }
 
 .mypage{
-    width: 70px;
+    width: 140px;
+    /*마이페이지 생기면 70px로 바꾸기*/
     height: 100%;
     display: flex;
     justify-content: center;
