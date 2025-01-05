@@ -8,11 +8,12 @@ interface Food {
 
 const FoodCardComponent : React.FC<Food> = (props) => {
   const foodname = JSON.parse(JSON.stringify(props.item))['food_name'];
+  const foodsrc = JSON.parse(JSON.stringify(props.item))['food_image_src'];
   return (
     <div className="card">
       <img
         //src는 테스트 제외로 나중에 추가해주어야함.
-        src="정보없음"
+        src={foodsrc}
         className="card-image"
       />
       <div className="card-body">
