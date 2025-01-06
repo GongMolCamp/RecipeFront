@@ -27,8 +27,8 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
         <p>냉장고를 부탁해</p>
       </div>
       <div className='Menu'>
-        <div className={activeMenu === 'ingredient' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/ingredient', 'ingredient')}>내취향 입력</div>
-        <div className={activeMenu === 'recommend' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/recommend', 'recommend')}>추천 레시피</div>
+        <div className={activeMenu === 'ingredient' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/ingredient', 'ingredient')}>재료입력</div>
+        <div className={activeMenu === 'taste' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/taste', 'taste')}>추천 레시피 받기</div>
         <div className={activeMenu === 'popular' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/popular', 'popular')}>인기 레시피</div>
         <div>
           {
