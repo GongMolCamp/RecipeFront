@@ -17,8 +17,8 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
   };
   const handleLoginClick = (path: string, menuName: string) => {
     setActiveMenu(menuName);
-    navigate('/');
-    changeLogin();
+    navigate(path);
+    //changeLogin();
   };
   
   return (
