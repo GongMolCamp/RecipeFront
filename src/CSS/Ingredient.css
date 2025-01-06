@@ -1,89 +1,79 @@
-
 .Ingredient-container {
     font-family: "Jua", sans-serif;
-    margin : 0 auto;
+    margin: 0 auto;
     width: 80rem;
-    height:70vh;
+    height: 70vh;
     margin-top: 25px;
     display: flex;
-    background-color: #f5f5f5;
+    background-color: #f5f5f5; /* 배경색 조정 */
     justify-content: space-around;
+    border-radius: 20px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
 }
 
 .refrigerator {
-    width: 15%;
+    width: 15%; /* 너비 조정 */
     height: 100%;
     margin: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FFB2B2;
+    background-color: #FFB2B2; /* 배경색 조정 */
     border-radius: 30px;
     font-size: 2rem;
-    cursor: pointer;
+    transition: transform 0.3s; /* 호버 효과 추가 */
+    cursor : pointer;
 }
-.refrigerator-top{
-    width: 100%;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border : 3px solid black;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-}
-.refrigerator-bottom{
-    width: 100%;
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border : 3px solid black;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-}
-
 .ingredient{
-    width: 75%;
+    width: 75%; /* 너비 조정 */
     height: 100%;
+    margin: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FFB2B2;
+    background-color: #FFB2B2; /* 배경색 조정 */
     border-radius: 30px;
     font-size: 2rem;
+    transition: transform 0.3s; /* 호버 효과 추가 */
 }
-.ingredient-top{
+
+.refrigerator:hover {
+    transform: scale(1.05); /* 호버 시 확대 효과 */
+}
+
+.refrigerator-top, .ingredient-top {
     width: 100%;
     height: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border : 3px solid black;
+    border: 3px solid black;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+    background-color: #FF7F7F; /* 상단 색상 조정 */
 }
-.ingredient-bottom{
+
+.refrigerator-bottom, .ingredient-bottom {
     width: 100%;
     height: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border : 3px solid black;
+    border: 3px solid black;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
 }
 
-.modal-overlay{
+/*모달*/
+.modal-overlay {
     position: fixed;
+    font-family: "Jua", sans-serif;
     width: 100%;
-    height:100%;
+    height: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -92,9 +82,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* 모달이 다른 요소 위에 오도록 설정 */
+    z-index: 1000;
 }
-.modal-content{
+
+
+.modal-content {
     width: 70%;
     height: 80%;
     background-color: white;
@@ -102,17 +94,84 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* 모달 그림자 추가 */
 }
-.modal-title{
-    width:100%;
-    height:15%;
-    display:flex;
+
+
+.modal-title {
+    width: 100%;
+    height: 15%;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size : 2.5rem;
 }
-.modal-input{
-    width:100%;
+.modal-title > div {
+    width: 25%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFB2B2;
+    border-radius: 10px; /* 모서리 둥글게 */
+    padding: 10px; /* 패딩 추가 */
+}
+
+
+
+.modal-input-container{
+    width: 95%;
     height: 70%;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content:center;
+}
+.modal-input {
+    width: 30%;
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    background-color: #FFB2B2;
+    justify-content: flex-start; /* 위쪽 정렬 */
+    margin: 10px;
+    border-radius: 30px;
+}
+
+.modal-input:nth-child(even) {
+    background-color: #FF7F7F; /* 짝수 번째 요소의 배경색 */
+}
+.input-title {
+    width: 100%;
+    height: auto; /* 높이를 자동으로 조정 */
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center;
+    font-size: 20px;
+    padding: 10px; /* 여백 추가 */
+}
+.input-div {
+    width: 90%; /* 적당한 너비 설정 */
+    height: 60%; /* 고정 높이 설정 */
+    background-color: white; /* 흰색 배경 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    display: flex;
+    margin: 0 auto;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    padding: 5px; /* 내부 여백 추가 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}
+
+
+.button-container{
+    width: 10%;
+    height: 10%;
+    margin-bottom : 5px;
+}
+.button{
+    width: 100%;
+    height: 100%;
+    background-color : #FFB2B2;
+    border-radius: 20px;
 }
