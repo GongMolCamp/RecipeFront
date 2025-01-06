@@ -3,7 +3,12 @@ import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Login.css';
 
-const Login: React.FC = () => {
+type HeaderProps = {
+  login: boolean;
+  changeLogin: () => void;
+}
+
+const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
   const navigate = useNavigate();
   const [user_id, setuser_id] = useState('');
   const [user_password, setuser_password] = useState('');
