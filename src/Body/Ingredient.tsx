@@ -16,7 +16,7 @@ type IngredientDetailProps = {
 };
 const IngredientDetail: React.FC<IngredientDetailProps> = (props) => {
   const ingredient_name = JSON.parse(JSON.stringify(props.item))["ingredient_name"]
-  return <div>{ingredient_name}</div>;
+  return <div className='flex'>{ingredient_name}, </div>;
 };
 
 const Ingredient: React.FC = () => {
@@ -41,7 +41,13 @@ const Ingredient: React.FC = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  const ingredient_list = data["item"].map((item: JSON) => <IngredientDetail item={item} />);
+  const ingredient_top_list = data["item"]
+    .filter((item: JSON) => JSON.parse(JSON.stringify(item))["ingredient_type"] === 1)
+    .map((item: JSON) => <IngredientDetail item={item} />);
+
+  const ingredient_bottom_list = data["item"]
+    .filter((item: JSON) => JSON.parse(JSON.stringify(item))["ingredient_type"] === 2)
+    .map((item: JSON) => <IngredientDetail item={item} />);
 
   const renderModal = () => {
     switch (modal) {
@@ -71,8 +77,8 @@ const Ingredient: React.FC = () => {
           </div>
         </div>
         <div className='ingredient'>
-          <div className='ingredient-top'>{ingredient_list}</div>
-          <div className='ingredient-bottom'>냉장 재료</div>
+          <div className='ingredient-top'>{ingredient_top_list}</div>
+          <div className='ingredient-bottom'>{ingredient_bottom_list}</div>
         </div>
       </div>
     </div>

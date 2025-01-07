@@ -25,7 +25,7 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }
     const handleButtonClick = async () => {
         const newList = Object.values(inputs).flatMap(input => input.split(',').map(item => item.trim()));
         setInputList(newList);
-        console.log(newList);
+    
         try {
             for (const name of newList) {
                 const response = await fetch('http://localhost:4000/services/ingredient', {
@@ -33,20 +33,28 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ name }),
+                    body: JSON.stringify({
+                        id: 1, // 고정된 값
+                        reftype: reftype, // reftype을 값으로 전송
+                        name: name
+                    }),
                 });
-
+    
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+    
+                const responseData = await response.json();
+                console.log(responseData);
             }
             alert('Ingredients added successfully');
             closeModal();
         } catch (error) {
-            console.error(error);
+            console.error('Error:', error);
             alert('Failed to add ingredients');
         }
     };
+    
 
     return (
         <div className='modal-overlay' onClick={closeModal}>

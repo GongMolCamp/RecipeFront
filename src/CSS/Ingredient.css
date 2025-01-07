@@ -1,7 +1,7 @@
 .Ingredient-container {
     font-family: "Jua", sans-serif;
     margin: 0 auto;
-    width: 80rem;
+    width: 90%;
     height: 70vh;
     margin-top: 25px;
     display: flex;
@@ -26,7 +26,7 @@
     cursor : pointer;
 }
 .ingredient{
-    width: 75%; /* 너비 조정 */
+    width: 65%; /* 너비 조정 */
     height: 100%;
     margin: 5px;
     display: flex;
@@ -47,25 +47,26 @@
     width: 100%;
     height: 30%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     border: 3px solid black;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     background-color: #FF7F7F; /* 상단 색상 조정 */
 }
-
+.refrigerator-top, .refrigerator-bottom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .refrigerator-bottom, .ingredient-bottom {
     width: 100%;
     height: 70%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     border: 3px solid black;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+}
+.ingredient-top, .ingredient-bottom{
+    padding : 10px;
 }
 
 /*모달*/
