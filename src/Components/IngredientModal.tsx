@@ -15,7 +15,19 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }
         reftype === 1 ? '조리된 음식 및 반찬' : '간식류',
         '기타'
     ];
-    
+    const [inputList, setInputList] = useState<string[]>([]);
+    const [inputs, setInputs] = useState<{ [key: string]: string }>({});
+
+    const handleInputChange = (title: string, value: string) => {
+        setInputs(prevInputs => ({ ...prevInputs, [title]: value }));
+    };
+
+    const handleButtonClick = () => {
+        const newList = Object.values(inputs).flatMap(input => input.split(',').map(item => item.trim()));
+        setInputList(newList);
+        console.log(newList);
+    };
+
     return (
         <div className='modal-overlay' onClick={closeModal}>
             <div className='modal-content' onClick={(e) => e.stopPropagation()}>
@@ -24,11 +36,11 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }
                 </div>
                 <div className='modal-input-container'>
                     {inputTitles.map((title, index) => (
-                        <ModalInput key={index} title={title}/>
+                        <ModalInput key={index} title={title} handleInputChange={handleInputChange} />
                     ))}
                 </div>
                 <div className='button-container'>
-                    <button className='button' >추가하기</button>
+                    <button className='button' onClick={handleButtonClick}>추가하기</button>
                 </div>
             </div>
         </div>
