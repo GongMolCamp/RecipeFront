@@ -1,49 +1,45 @@
-import { hasSubscribers } from 'diagnostics_channel';
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 type TextInputCompProps = {
-}
+    title: string;
+    handleInputChange: (title: string, value: string) => void;
+};
 
-const TextInputComp:React.FC<TextInputCompProps> = ({}) => {
-    
-    const [input,setInput] = useState<string>("");
-    
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const TextInputComp: React.FC<TextInputCompProps> = ({ title, handleInputChange }) => {
+    const [input, setInput] = useState<string>("");
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInput(event.target.value);
-    }
-
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault(); //페이지 리로드 방지
-        //여기에 입력값 처리해주는 구간
-        console.log(input);
-    }
+        handleInputChange(title, event.target.value);
+    };
 
     return (
-        <form onSubmit={handleSubmit} className='input-div'>
+        <div className='input-div'>
             <label>
                 <div>
                     <input 
                         className='w-full h-full border-none outline-none' 
                         type="text" 
                         value={input} 
-                        onChange={handleInputChange}
-                        placeholder="추가할 재료 적기" 
+                        onChange={handleChange}
+                        placeholder={`추가할 ${title} 적기`} 
                     />
                 </div>
             </label>
-        </form>
-    )
-}
+        </div>
+    );
+};
 
 type ModalInputProps = {
     title: string;
+    handleInputChange: (title: string, value: string) => void;
 };
 
-const ModalInput: React.FC<ModalInputProps> = ({ title }) => {
+const ModalInput: React.FC<ModalInputProps> = ({ title, handleInputChange }) => {
     return (
         <div className='modal-input'>
             <div className='input-title'>{title}</div>
-            <TextInputComp />
+            <TextInputComp title={title} handleInputChange={handleInputChange} />
         </div>
     );
 };
