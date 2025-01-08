@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, JSX } from 'react';
 import '../CSS/Ingredient.css';
 import IngredientModal from '../Components/IngredientModal';
 import { useQuery } from '@tanstack/react-query';
@@ -14,49 +14,84 @@ const fetchIngredientQuery = async () => {
 type IngredientDetailProps = {
   item: JSON;
 };
+
 const IngredientDetail: React.FC<IngredientDetailProps> = (props) => {
-  const ingredient_name = JSON.parse(JSON.stringify(props.item))["ingredient_name"]
+  const ingredient_name = JSON.parse(JSON.stringify(props.item))["ingredient_name"];
   return <div className='flex'>{ingredient_name}, </div>;
 };
 
 const Ingredient: React.FC = () => {
   const [modal, setModal] = useState<number>(0);
+  const [ingredientTopList, setTopList] = useState<JSX.Element[]>([]);
+  const [ingredientBottomList, setBottomList] = useState<JSX.Element[]>([]);
+  const [data, setData] = useState<any>(null); // 데이터를 상태로 관리
+
   const openModal = (reftype: number) => {
     setModal(reftype);
   };
+
   const closeModal = () => {
     setModal(0);
   };
 
-  const { data, error, isLoading, isError } = useQuery({
-    queryKey: ['posts'], // 데이터 캐시 키
-    queryFn: fetchIngredientQuery, // 데이터를 가져오는 함수
-  });
+  const fetchIngredients = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/services/ingredient?id=1');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const responseData = await response.json();
+      setData(responseData);
+    } catch (error) {
+      console.error('Error fetching ingredients:', error);
+    }
+  };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    fetchIngredients();
+  }, []);
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
+  useEffect(() => {
+    if (data) {
+      const topList = data["item"]
+        .filter((item: any) => item["ingredient_type"] === 1)
+        .map((item: any) => (
+          <IngredientDetail 
+            key={item["ingredient_id"]}
+            item={item} 
+          />
+        ));
+      setTopList(topList);
 
-  const ingredient_top_list = data["item"]
-    .filter((item: JSON) => JSON.parse(JSON.stringify(item))["ingredient_type"] === 1)
-    .map((item: JSON) => <IngredientDetail item={item} />);
+      const bottomList = data["item"]
+        .filter((item: any) => item["ingredient_type"] === 2)
+        .map((item: any) => (
+          <IngredientDetail 
+            key={item["ingredient_id"]}
+            item={item} 
+          />
+        ));
+      setBottomList(bottomList);
+    }
+  }, [data]);
 
-  const ingredient_bottom_list = data["item"]
-    .filter((item: JSON) => JSON.parse(JSON.stringify(item))["ingredient_type"] === 2)
-    .map((item: JSON) => <IngredientDetail item={item} />);
+  const handleDataUpdate = () => {
+    fetchIngredients(); // 데이터를 다시 fetch
+  };
 
   const renderModal = () => {
     switch (modal) {
       case 0:
         return <></>;
       case 1:
-        return <IngredientModal closeModal={closeModal} reftype={modal} />;
       case 2:
-        return <IngredientModal closeModal={closeModal} reftype={modal} />;
+        return (
+          <IngredientModal 
+            closeModal={closeModal} 
+            reftype={modal} 
+            onUpdate={handleDataUpdate} // 데이터 업데이트 콜백 전달
+          />
+        );
       default:
         return <></>;
     }
@@ -77,12 +112,14 @@ const Ingredient: React.FC = () => {
           </div>
         </div>
         <div className='ingredient'>
-          <div className='ingredient-top'>{ingredient_top_list}</div>
-          <div className='ingredient-bottom'>{ingredient_bottom_list}</div>
+          <div className='ingredient-top'>{ingredientTopList}</div>
+          <div className='ingredient-bottom'>{ingredientBottomList}</div>
         </div>
       </div>
     </div>
   );
 };
+
+
 
 export default Ingredient;

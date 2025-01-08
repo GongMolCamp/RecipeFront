@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import ModalInput from './ModalInput'; // ModalInput 컴포넌트를 import
+import { useState } from "react";
+import ModalInput from "./ModalInput";
 
 type IngredientModalProps = {
     reftype: number;
     closeModal: () => void;
+    onUpdate: () => void; // 데이터 업데이트 콜백
 };
 
-const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }) => {
+const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal, onUpdate }) => {
     const inputTitles = [
         '육류',
         '해산물',
@@ -15,7 +16,6 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }
         reftype === 1 ? '조리된 음식 및 반찬' : '간식류',
         '기타'
     ];
-    const [inputList, setInputList] = useState<string[]>([]);
     const [inputs, setInputs] = useState<{ [key: string]: string }>({});
 
     const handleInputChange = (title: string, value: string) => {
@@ -24,7 +24,6 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }
 
     const handleButtonClick = async () => {
         const newList = Object.values(inputs).flatMap(input => input.split(',').map(item => item.trim()));
-        setInputList(newList);
     
         try {
             for (const name of newList) {
@@ -43,18 +42,15 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal }
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-    
-                const responseData = await response.json();
-                console.log(responseData);
             }
             alert('Ingredients added successfully');
+            onUpdate(); // 상위 컴포넌트에 데이터 업데이트 요청
             closeModal();
         } catch (error) {
             console.error('Error:', error);
             alert('Failed to add ingredients');
         }
     };
-    
 
     return (
         <div className='modal-overlay' onClick={closeModal}>

@@ -36,7 +36,7 @@
     justify-content: center;
     background-color: #B2D6FF; /* 배경색 조정 */
     border-radius: 30px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     transition: transform 0.3s; /* 호버 효과 추가 */
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4); /* 그림자 설정 */
 }
