@@ -17,7 +17,7 @@ const Join: React.FC = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/user/join', {
+      const response = await fetch('http://localhost:4000/services/user/join', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
