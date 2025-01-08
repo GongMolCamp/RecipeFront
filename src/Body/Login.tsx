@@ -1,6 +1,7 @@
 //로그인 페이지
 import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 import '../CSS/Login.css';
 
 type HeaderProps = {
@@ -8,8 +9,10 @@ type HeaderProps = {
   changeLogin: () => void;
 }
 
-const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
+const Login: React.FC<HeaderProps> = () => {
   const navigate = useNavigate();
+  const { globalVariable, setGlobalVariable } = useGlobal();
+  const { refresh, setRefresh} = useRefresh();
   const [user_id, setuser_id] = useState('');
   const [user_password, setuser_password] = useState('');
   const [error, setError] = useState('');
@@ -34,9 +37,10 @@ const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        alert('로그인 성공');
         navigate('/'); // 홈으로 이동
-        changeLogin();
+        setGlobalVariable(user_id);
+        setRefresh(true);
+        alert('로그인 성공');
       } else {
         setError(data.message || '로그인 실패');
       }

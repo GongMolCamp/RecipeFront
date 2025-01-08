@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 import '../CSS/Header.css';
 import img from '../imgs/logo.png';
 
@@ -11,6 +12,8 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState<string>('');
+  const { globalVariable, setGlobalVariable } = useGlobal();
+  const { refresh, setRefresh} = useRefresh();
 
   const handleMenuClick = (path: string, menuName: string) => {
     setActiveMenu(menuName);
@@ -19,14 +22,25 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
   const handleLoginClick = (path: string, menuName: string) => {
     setActiveMenu(menuName);
     navigate(path);
-    //changeLogin();
   };
+  const logout = () => {
+    const result = window.confirm('로그아웃 하시겠습니까?');
+    if(result){
+      alert('로그아웃 되었습니다.');
+      setGlobalVariable('');
+      setRefresh(false);
+    }
+  }
   
   return (
     <div className='flex items-center justify-between Header'>
       <div className='LogoContainer' onClick={() => handleMenuClick('/', '')}>
         <img className='w-64' src={img} alt="냉장고를 부탁해 로고" />
         <p className='text-5xl text-center Header-Logo'>냉장고를 부탁해</p>
+        {
+        refresh ? (<p onClick={()=>logout()}>{globalVariable}님, 안녕하세요</p>) :(null)
+        }
+        
       </div>
       <div className='Menu'>
         <div className={activeMenu === 'ingredient' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/ingredient', 'ingredient')}>재료입력</div>
@@ -34,8 +48,8 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
         <div className={activeMenu === 'popular' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/popular', 'popular')}>인기 레시피</div>
         <div>
           {
-            login ? 
-              (<div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그아웃</div>) : 
+            refresh ? 
+              (<div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/mypage', 'mypage')}>내 정보</div>) : 
               (<div className={activeMenu === 'login' ? 'login active' : 'login non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그인</div>)
           }
         </div>
