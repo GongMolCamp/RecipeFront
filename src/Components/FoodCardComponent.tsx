@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../CSS/Popular.css';  // CSS 스타일을 따로 추가할 수 있습니다.
-
+import ImageButton from './ImageButton';
 interface Food {
   item: JSON;
+  
+  user_id : string;
 }
 
 
 const FoodCardComponent : React.FC<Food> = (props) => {
-  const foodname = JSON.parse(JSON.stringify(props.item))['food_name'];
-  const foodsrc = JSON.parse(JSON.stringify(props.item))['food_image_src'];
+  const data = JSON.parse(JSON.stringify(props.item));
+  const foodname =  data['food_name'];
+  const foodsrc = data['food_image_src'];
+  const user_id = props.user_id;
+
+
   return (
     <div className="card">
       <img
@@ -17,9 +23,15 @@ const FoodCardComponent : React.FC<Food> = (props) => {
         className="card-image"
       />
       <div className="card-body">
-        <h2 className="card-title">{foodname}</h2>
-        <button className="card-button">레시피 보러가기</button>
-      </div>
+        <div className="card-side">
+          <h2 className="card-title">{foodname}</h2>
+          <div className='card-like-part'>
+            <h2 className="liked-title">{data["food_liked"]}</h2>
+            <ImageButton food={data} user_id={user_id}></ImageButton>
+          </div>
+        </div>
+        <button onClick={()=>{}} className="card-button">레시피 보러가기</button>
+      </div>ㄴ
     </div>
   );
 }
