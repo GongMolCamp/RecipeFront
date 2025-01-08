@@ -36,6 +36,7 @@ const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
       if (response.ok && data.success) {
         alert('로그인 성공');
         navigate('/'); // 홈으로 이동
+        changeLogin();
       } else {
         setError(data.message || '로그인 실패');
       }
