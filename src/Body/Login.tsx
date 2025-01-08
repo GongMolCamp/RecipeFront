@@ -18,7 +18,7 @@ const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/user/login', {
+      const response = await fetch('http://localhost:4000/services/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
