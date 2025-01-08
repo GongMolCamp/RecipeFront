@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Header.css';
-import img from '../Img/logo.png';
+import img from '../imgs/logo.png';
 
 type HeaderProps = {
   login: boolean;
