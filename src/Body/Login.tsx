@@ -80,10 +80,11 @@ const Login: React.FC<HeaderProps> = () => {
         />
       </div>
       <br />
-      <button className="loginbuttons" id='registerbutton' onClick={() => navigate('/join')}>회원가입</button>
-      <br/>
-      <button className='loginbuttons' id='backbutton' onClick={() => navigate('/')}>뒤로가기</button>
       <button className='loginbuttons' id='loginbutton' type="submit">로그인</button>
+      <br/>
+      <button className="loginbuttons" id='registerbutton' onClick={() => navigate('/join')}>회원가입</button>
+      <button className='loginbuttons' id='backbutton' onClick={() => navigate('/')}>뒤로가기</button>
+      
       {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </form>
