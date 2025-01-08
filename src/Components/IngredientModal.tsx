@@ -33,7 +33,7 @@ const IngredientModal: React.FC<IngredientModalProps> = ({ reftype, closeModal, 
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        id: 1, // 고정된 값
+                        id: "1", // 고정된 값
                         reftype: reftype, // reftype을 값으로 전송
                         name: name
                     }),
