@@ -1,17 +1,33 @@
 .Header {
     width: 100%;
     height: 200px;
-    background-color: #FFB2B2;
+    background-color: #B2D6FF;
     border-radius: 50px;
     display: flex;
     font-family: "Jua", sans-serif;
     align-items: center; /* 수직 중앙 정렬 */
     justify-content: space-between; /* 좌우 간격을 맞춤 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* 모달 그림자 추가 */
+}
+.LogoContainer{
+    width: 500px;
+    min-width: 200px; /* 최소 너비를 지정 */
+    height: 200px;
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    cursor: pointer;
+}
+
+.LogoContainer > img{
+    width: 30%;
+    height: 190px;
+    background-color: #B2D6FF;
 }
 
 .Header-Logo {
-    width: 500px;
-    min-width: 200px; /* 최소 너비를 지정 */
+    width: 200px;
+    min-width: 100px; /* 최소 너비를 지정 */
     height: 200px;
     display: flex;
     justify-content: center; /* 수평 중앙 정렬 */
@@ -49,8 +65,9 @@
     align-items: center; /* 수직 중앙 정렬 */
     cursor: pointer;
     text-align: center;
-    background-color: #FFD9D9;
+    background-color: #72B4FF;
     border-radius: 50px;
+
 }
 
 .mypage{

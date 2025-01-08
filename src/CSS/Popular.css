@@ -64,7 +64,7 @@
   }
   
   .card-button {
-    background-color: #FFB2B2;
+    background-color: #B2D6FF;
     color:  black;
     border: none;
     padding: 10px;
@@ -76,5 +76,5 @@
   }
   
   .card-button:hover {
-    background-color: #FFB2B2;
+    background-color: #B2D6FF;
   }
