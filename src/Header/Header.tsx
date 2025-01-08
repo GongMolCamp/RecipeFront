@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Header.css';
+import img from '../Img/logo.png';
 
 type HeaderProps = {
   login: boolean;
@@ -23,8 +24,9 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
   
   return (
     <div className='flex items-center justify-between Header'>
-      <div className='text-5xl text-center Header-Logo' onClick={() => handleMenuClick('/', '')}>
-        <p>냉장고를 부탁해</p>
+      <div className='LogoContainer' onClick={() => handleMenuClick('/', '')}>
+        <img className='w-64' src={img} alt="냉장고를 부탁해 로고" />
+        <p className='text-5xl text-center Header-Logo'>냉장고를 부탁해</p>
       </div>
       <div className='Menu'>
         <div className={activeMenu === 'ingredient' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/ingredient', 'ingredient')}>재료입력</div>

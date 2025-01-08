@@ -1,7 +1,7 @@
 .Ingredient-container {
     font-family: "Jua", sans-serif;
     margin: 0 auto;
-    width: 80rem;
+    width: 90%;
     height: 70vh;
     margin-top: 25px;
     display: flex;
@@ -19,24 +19,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FFB2B2; /* 배경색 조정 */
+    background-color: #B2D6FF; /* 배경색 조정 */
     border-radius: 30px;
     font-size: 2rem;
     transition: transform 0.3s; /* 호버 효과 추가 */
     cursor : pointer;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4); /* 그림자 설정 */
 }
 .ingredient{
-    width: 75%; /* 너비 조정 */
+    width: 65%; /* 너비 조정 */
     height: 100%;
     margin: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FFB2B2; /* 배경색 조정 */
+    background-color: #B2D6FF; /* 배경색 조정 */
     border-radius: 30px;
     font-size: 2rem;
     transition: transform 0.3s; /* 호버 효과 추가 */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4); /* 그림자 설정 */
 }
 
 .refrigerator:hover {
@@ -47,25 +49,26 @@
     width: 100%;
     height: 30%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     border: 3px solid black;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    background-color: #FF7F7F; /* 상단 색상 조정 */
+    background-color: #7AB8FF; /* 상단 색상 조정 */
 }
-
+.refrigerator-top, .refrigerator-bottom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .refrigerator-bottom, .ingredient-bottom {
     width: 100%;
     height: 70%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     border: 3px solid black;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+}
+.ingredient-top, .ingredient-bottom{
+    padding : 10px;
 }
 
 /*모달*/
@@ -114,7 +117,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FFB2B2;
+    background-color: #B2D6FF;
     border-radius: 10px; /* 모서리 둥글게 */
     padding: 10px; /* 패딩 추가 */
 }
@@ -132,7 +135,7 @@
     width: 30%;
     display: flex;
     flex-direction: column; /* 세로 방향으로 정렬 */
-    background-color: #FFB2B2;
+    background-color: #B2D6FF;
     justify-content: flex-start; /* 위쪽 정렬 */
     margin: 10px;
     border-radius: 30px;
@@ -172,6 +175,6 @@
 .button{
     width: 100%;
     height: 100%;
-    background-color : #FFB2B2;
+    background-color : #B2D6FF;
     border-radius: 20px;
 }
