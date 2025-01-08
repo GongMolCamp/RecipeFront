@@ -5,7 +5,7 @@ import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 const Mypage: React.FC = () => {
     return (
         <div>
-            <h1>마이페이지</h1>
+            <h1>마이페이지입니다.</h1>
         </div>
     );
 }

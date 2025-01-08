@@ -4,12 +4,13 @@ import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 import '../CSS/Header.css';
 import img from '../imgs/logo.png';
 
+
 type HeaderProps = {
   login: boolean;
   changeLogin: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
+const Header: React.FC = () => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState<string>('');
   const { globalVariable, setGlobalVariable } = useGlobal();
@@ -24,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({login,changeLogin}) => {
     navigate(path);
   };
   const logout = () => {
-    const result = window.confirm('로그아웃 하시겠습니까?');
+    const result = window.confirm('로그아웃 하시겠습니까??');
     if(result){
       alert('로그아웃 되었습니다.');
       setGlobalVariable('');

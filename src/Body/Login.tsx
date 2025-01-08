@@ -4,12 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 import '../CSS/Login.css';
 
-type HeaderProps = {
-  login: boolean;
-  changeLogin: () => void;
-}
-
-const Login: React.FC<HeaderProps> = () => {
+const Login: React.FC = () => {
   const navigate = useNavigate();
   const { globalVariable, setGlobalVariable } = useGlobal();
   const { refresh, setRefresh} = useRefresh();
@@ -40,7 +35,7 @@ const Login: React.FC<HeaderProps> = () => {
         navigate('/'); // 홈으로 이동
         setGlobalVariable(user_id);
         setRefresh(true);
-        alert('로그인 성공');
+        alert({user_id}+'님, 환영합니다.');
       } else {
         setError(data.message || '로그인 실패');
       }
