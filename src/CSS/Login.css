@@ -12,7 +12,7 @@
   /* 로그인 폼 컨테이너 */
   .loginform {
     width: 800px; /* 폼의 가로 크기 */
-    background-color: #FFD9D9; /* 폼 배경색 */
+    background-color: #B2D6FF; /* 폼 배경색 */
     border-radius: 20px; /* 둥근 모서리 */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
     padding: 20px; /* 내부 여백 */
@@ -22,13 +22,7 @@
   /* 제목 스타일 */
   .logintitle {
     font-size: 40px;
-    font-weight: bold;
-    color: red;
-    text-shadow: 
-      -1px -1px 0 #000, 
-       1px -1px 0 #000, 
-      -1px  1px 0 #000, 
-       1px  1px 0 #000; /* 외곽선 효과 */
+    color: blue;
     margin-bottom: 20px;
   }
   
@@ -72,12 +66,12 @@
   
   /* 회원가입 버튼 */
   #registerbutton {
-    background-color: #ffc0cb; /* 연분홍 버튼 */
+    background-color: #6799ff; /* 연분홍 버튼 */
     color: #000;
   }
   
   #registerbutton:hover {
-    background-color: #ff80ab; /* 더 진한 핑크 */
+    background-color: #4374d9; /* 더 진한 핑크 */
   }
   
   /* 뒤로가기 버튼 */
@@ -92,12 +86,12 @@
   
   /* 로그인 버튼 */
   #loginbutton {
-    background-color: #ff8a65; /* 오렌지 버튼 */
+    background-color: #5cd1e5; /* 오렌지 버튼 */
     color: #fff;
   }
   
   #loginbutton:hover {
-    background-color: #ff7043; /* 더 진한 오렌지 */
+    background-color: #3db7cc; /* 더 진한 오렌지 */
   }
   
   /* 에러 메시지 스타일 */
