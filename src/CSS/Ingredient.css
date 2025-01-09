@@ -54,11 +54,6 @@
     border-top-right-radius: 30px;
     background-color: #7AB8FF; /* 상단 색상 조정 */
 }
-.refrigerator-top, .refrigerator-bottom {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 .refrigerator-bottom, .ingredient-bottom {
     width: 100%;
     height: 70%;
@@ -67,8 +62,48 @@
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
 }
+.refrigerator-top, .refrigerator-bottom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .ingredient-top, .ingredient-bottom{
-    padding : 10px;
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap; /* 요소가 다음 줄로 넘어가도록 설정 */
+    gap: 5px;
+    overflow: hidden; /* 넘치는 콘텐츠를 숨김 */
+    position: relative; /* ... 표시를 위해 필요 */
+}
+.ingredient-detail{
+    height: 40px;
+    display: inline-block; /* 텍스트 길이에 맞게 크기 조정 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    text-overflow: ellipsis; /* ... 표시 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    padding: 5px 10px; /* 내부 여백 */
+    background-color: #e0f7fa; /* 배경색 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 */
+}
+.dot{
+    position: absolute;
+    bottom: 10px;
+    right: 105px;
+    display: block;
+    background: white; /* 배경색으로 표시 */
+    border-radius: 10px;
+    padding: 0 5px; /* 여백 추가 */
+}
+.delete{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: block;
+    background: white; /* 배경색으로 표시 */
+    border-radius: 10px;
+    padding: 0 5px; /* 여백 추가 */
+    cursor: pointer;
 }
 
 /*모달*/

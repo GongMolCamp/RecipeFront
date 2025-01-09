@@ -1,6 +1,7 @@
 import React, { useState, useEffect, JSX } from 'react';
 import '../CSS/Ingredient.css';
-import IngredientModal from '../Components/IngredientModal';
+import IngredientInputModal from '../Components/IngredientInputModal';
+import IngredientDeleteModal from '../Components/IngredientDeleteModal';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchIngredientQuery = async () => {
@@ -17,7 +18,7 @@ type IngredientDetailProps = {
 
 const IngredientDetail: React.FC<IngredientDetailProps> = (props) => {
   const ingredient_name = JSON.parse(JSON.stringify(props.item))["ingredient_name"];
-  return <div className='flex'>{ingredient_name}, </div>;
+  return <div className='ingredient-detail'>{ingredient_name}</div>;
 };
 
 const Ingredient: React.FC = () => {
@@ -86,12 +87,19 @@ const Ingredient: React.FC = () => {
       case 1:
       case 2:
         return (
-          <IngredientModal 
+          <IngredientInputModal 
             closeModal={closeModal} 
             reftype={modal} 
             onUpdate={handleDataUpdate} // 데이터 업데이트 콜백 전달
           />
         );
+      case 3:
+      case 4:
+        return (
+          <IngredientDeleteModal 
+            closeModal={closeModal} 
+            reftype={modal} 
+          />);
       default:
         return <></>;
     }
@@ -112,8 +120,16 @@ const Ingredient: React.FC = () => {
           </div>
         </div>
         <div className='ingredient'>
-          <div className='ingredient-top'>{ingredientTopList}</div>
-          <div className='ingredient-bottom'>{ingredientBottomList}</div>
+          <div className='ingredient-top'>
+            {ingredientTopList}
+            <div className='dot'>...</div>  
+            <div className='delete' onClick={() => openModal(3)} >삭제하기</div>
+          </div>
+          <div className='ingredient-bottom'>
+            {ingredientBottomList}
+            <div className='dot'>...</div>  
+            <div className='delete' onClick={() => openModal(4)} >삭제하기</div>
+          </div>
         </div>
       </div>
     </div>
