@@ -1,0 +1,84 @@
+/* 마이페이지 컨테이너 */
+
+.mypage-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+  }
+
+.mypage-container {
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* 헤더 스타일 */
+  .mypage-header {
+    background-color: #B2D6FF;
+    border-radius: 15px 15px 15px 15px;
+    padding: 20px;
+    color: black;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* 사용자 정보 */
+  .mypage-content {
+    padding: 20px;
+  }
+  
+  .mypage-content h2 {
+    color: black;
+    margin-bottom: 20px;
+  }
+  
+  .user-info {
+    background-color: #B2D6FF;
+    border: 1px solid #a8d0f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .user-info p {
+    margin: 10px 0;
+    color: black;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+  
+  /* 버튼 스타일 */
+  .mypage-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .mypage-buttons button {
+    background-color: #B2D6FF;
+    font-family: 'Arial', sans-serif;
+    color: black;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mypage-buttons button:hover {
+    background-color: #4b78a2;
+  }
+  

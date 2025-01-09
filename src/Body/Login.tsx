@@ -26,7 +26,7 @@ const Login: React.FC = () => {
 
       if (!response.ok) {
         console.error('HTTP Error:', response.status); // 상태 코드 출력
-        throw new Error(`HTTP error! status: ${response.status}`);
+        // throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
         navigate('/'); // 홈으로 이동
         setGlobalVariable(user_id);
         setRefresh(true);
-        alert({user_id}+'님, 환영합니다.');
+        alert(user_id+'님, 환영합니다.');
       } else {
         setError(data.message || '로그인 실패');
       }
@@ -74,13 +74,11 @@ const Login: React.FC = () => {
           required
         />
       </div>
-      <br />
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <button className='loginbuttons' id='loginbutton' type="submit">로그인</button>
       <br/>
       <button className="loginbuttons" id='registerbutton' onClick={() => navigate('/join')}>회원가입</button>
       <button className='loginbuttons' id='backbutton' onClick={() => navigate('/')}>뒤로가기</button>
-      
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </form>
     </div>

@@ -78,8 +78,8 @@ const Join: React.FC = () => {
       <div className='userpreferneces'>
         <div className='userpreferneceslabels'>
           <label>음식 취향1</label>
-          <select className='preferenceselect' id='dropdown1' name='user_preference1' value={user_preference1} onChange={(e) => setuser_preference1(e.target.value)}>
-            <option selected value='한식'>한식</option>
+          <select className='preferenceselect' id='dropdown1' name='user_preference1' value={user_preference1} onChange={(e) => setuser_preference1(e.target.value)} defaultValue={'한식'}>
+            <option value='한식'>한식</option>
             <option value='중식'>중식</option>
             <option value='일식'>일식</option>
             <option value='양식'>양식</option>
@@ -89,7 +89,7 @@ const Join: React.FC = () => {
         <br />
         <div className='userpreferneceslabels'>
           <label>음식 취향2</label>
-          <select className='preferenceselect' id='dropdown2' name='user_preference2' value={user_preference2} onChange={(e) => setuser_preference2(e.target.value)}>
+          <select className='preferenceselect' id='dropdown2' name='user_preference2' value={user_preference2} onChange={(e) => setuser_preference2(e.target.value)} defaultValue={'한식'}>
             <option value='한식'>한식</option>
             <option value='중식'>중식</option>
             <option value='일식'>일식</option>
@@ -100,7 +100,7 @@ const Join: React.FC = () => {
         <br />
         <div className='userpreferneceslabels'>
           <label>음식 취향3</label>
-          <select className='preferenceselect' id='dropdown3' name='user_preference3' value={user_preference3} onChange={(e) => setuser_preference3(e.target.value)}>
+          <select className='preferenceselect' id='dropdown3' name='user_preference3' value={user_preference3} onChange={(e) => setuser_preference3(e.target.value)} defaultValue={'한식'}>
             <option value='한식'>한식</option>
             <option value='중식'>중식</option>
             <option value='일식'>일식</option>
