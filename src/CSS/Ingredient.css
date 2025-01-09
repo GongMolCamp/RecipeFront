@@ -89,21 +89,18 @@
 .dot{
     position: absolute;
     bottom: 10px;
-    right: 105px;
+    right: 5px;
     display: block;
     background: white; /* 배경색으로 표시 */
     border-radius: 10px;
     padding: 0 5px; /* 여백 추가 */
 }
-.delete{
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: block;
-    background: white; /* 배경색으로 표시 */
-    border-radius: 10px;
-    padding: 0 5px; /* 여백 추가 */
-    cursor: pointer;
+.refdata-container {
+    display: flex;
+    flex-wrap: wrap; /* 여러 줄로 정렬 */
+    gap: 20px; /* 컴포넌트 간의 간격 */
+    justify-content: center; /* 가운데 정렬 */
+    padding: 10px; /* 내부 여백 */
 }
 
 /*모달*/

@@ -37,14 +37,19 @@ const IngredientModal: React.FC<IngredientInputModalProps> = ({ userid, reftype,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        id: {userid}, // 고정된 값
-                        reftype: reftype, // reftype 전송
+                        id: userid,
+                        reftype: reftype,
                         name: name,
                     }),
                 });
-
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    const errorData = await response.json();
+                    if (errorData.error === 'Duplicate entry') {
+                        alert(`'${name}'은(는) 이미 추가된 항목입니다.`);
+                    } else {
+                        throw new Error('Unknown error');
+                    }
+                    continue; // 다음 항목으로 진행
                 }
             }
             alert('Ingredients added successfully');

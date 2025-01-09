@@ -1,8 +1,8 @@
 import React, { useState, useEffect, JSX } from 'react';
 import '../CSS/Ingredient.css';
 import IngredientInputModal from '../Components/IngredientInputModal';
-import IngredientDeleteModal from '../Components/IngredientDeleteModal';
 import { useQuery } from '@tanstack/react-query';
+import FullIngredientModal from '../Components/FullIngredientModal';
 
 const fetchIngredientQuery = async () => {
   const response = await fetch('http://localhost:4000/services/ingredient?id=1'); // id 파라미터 추가
@@ -14,11 +14,45 @@ const fetchIngredientQuery = async () => {
 
 type IngredientDetailProps = {
   item: JSON;
+  fetch : () => void
 };
 
 const IngredientDetail: React.FC<IngredientDetailProps> = (props) => {
   const ingredient_name = JSON.parse(JSON.stringify(props.item))["ingredient_name"];
-  return <div className='ingredient-detail'>{ingredient_name}</div>;
+  const handleDelete = async () => {
+    const confirmed:boolean = window.confirm("삭제하시겠습니까?");
+    if(confirmed){
+      try{
+        const response = await fetch('http://localhost:4000/services/ingredient', {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              id: JSON.parse(JSON.stringify(props.item))["ingredient_id"] ,
+              reftype: JSON.parse(JSON.stringify(props.item))["ingredient_type"] ,
+              name: ingredient_name,
+          }),
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          if (errorData.error === 'Duplicate entry') {
+              alert(`'${ingredient_name}'은(는) 이미 추가된 항목입니다.`);
+          } else {
+              throw new Error('Unknown error');
+          }
+        }
+      } catch(error){
+        console.error('Error:', error);
+        alert("삭제가 정상적으로 되지 않았습니다.");
+      }
+      props.fetch();
+      alert("삭제되었습니다.");
+    }else{
+      alert("삭제가 취소되었습니다.");
+    }
+  }
+  return <div className='ingredient-detail' onClick={handleDelete}>{ingredient_name}</div>;
 };
 
 const Ingredient: React.FC = () => {
@@ -37,7 +71,7 @@ const Ingredient: React.FC = () => {
 
   const fetchIngredients = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/services/ingredient?id=${userid}`);
+      const response = await fetch(`http://localhost:4000/services/ingredient`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -58,8 +92,9 @@ const Ingredient: React.FC = () => {
         .filter((item: any) => item["ingredient_type"] === 1)
         .map((item: any) => (
           <IngredientDetail 
-            key={item["ingredient_id"]}
+            //key={item["ingredient_id"]}
             item={item} 
+            fetch = {fetchIngredients}
           />
         ));
       setTopList(topList);
@@ -70,6 +105,7 @@ const Ingredient: React.FC = () => {
           <IngredientDetail 
             key={item["ingredient_id"]}
             item={item} 
+            fetch = {fetchIngredients}
           />
         ));
       setBottomList(bottomList);
@@ -79,32 +115,6 @@ const Ingredient: React.FC = () => {
   const handleDataUpdate = () => {
     fetchIngredients(); // 데이터를 다시 fetch
   };
-
-  const handleDelete = async (name: string) => {
-    try {
-        const response = await fetch('http://localhost:4000/services/ingredient', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: userid, // 고정된 값
-                reftype: modal, // 현재 모달의 타입
-                name: name,
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        alert('재료가 삭제되었습니다.');
-        handleDataUpdate(); // 데이터 업데이트 요청
-        closeModal();
-    } catch (error) {
-        console.error('Error deleting ingredient:', error);
-        alert('삭제에 실패했습니다.');
-    }
-};
 
   const renderModal = () => {
     switch (modal) {
@@ -121,14 +131,16 @@ const Ingredient: React.FC = () => {
           />
         );
       case 3:
+        return (<FullIngredientModal 
+          reftype = {1} 
+          refdata = {ingredientTopList} 
+          closeModal={closeModal}/>);
       case 4:
-        return (
-          <IngredientDeleteModal 
-              closeModal={closeModal} 
-              reftype={modal} 
-              onDelete={handleDelete} // 삭제 콜백 전달
-          />
-        );
+        return (<FullIngredientModal 
+          reftype = {2} 
+          refdata = {ingredientBottomList}
+          closeModal={closeModal}
+          />);
       default:
         return <></>;
     }
@@ -151,13 +163,11 @@ const Ingredient: React.FC = () => {
         <div className='ingredient'>
           <div className='ingredient-top'>
             {ingredientTopList}
-            <div className='dot'>...</div>  
-            <div className='delete' onClick={() => openModal(3)} >삭제하기</div>
+            <div className='dot' onClick={() => openModal(3)}>...</div>  
           </div>
           <div className='ingredient-bottom'>
             {ingredientBottomList}
-            <div className='dot'>...</div>  
-            <div className='delete' onClick={() => openModal(4)} >삭제하기</div>
+            <div className='dot' onClick={() => openModal(4)}>...</div>  
           </div>
         </div>
       </div>
