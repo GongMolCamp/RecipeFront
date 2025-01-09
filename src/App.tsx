@@ -10,6 +10,7 @@ import Popular from './Body/Popular';
 import Taste from './Body/Taste';
 import RecipeDetail from './Body/RecipeDetail';
 import Recommend from './Body/Recommend';
+import Mypage from './Body/Mypage';
 
 
 
@@ -22,12 +23,13 @@ const App: React.FC = () => {
 
   return (
       <BrowserRouter basename="/react-test">
-        <Header login={login} changeLogin={changeLogin}/>
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/ingredient' element={<Ingredient />} />
-          <Route path='/login' element={<Login login={login} changeLogin={changeLogin} />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/join' element={<Join />} />
+          <Route path='/mypage' element={<Mypage />} />
           <Route path='/popular' element={<Popular />} />
           <Route path='/taste' element={<Taste />} />
           <Route path='/recipeDetail' element={<RecipeDetail />} />

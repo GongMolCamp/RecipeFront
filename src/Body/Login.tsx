@@ -1,15 +1,13 @@
 //로그인 페이지
 import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 import '../CSS/Login.css';
 
-type HeaderProps = {
-  login: boolean;
-  changeLogin: () => void;
-}
-
-const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
+const Login: React.FC = () => {
   const navigate = useNavigate();
+  const { globalVariable, setGlobalVariable } = useGlobal();
+  const { refresh, setRefresh} = useRefresh();
   const [user_id, setuser_id] = useState('');
   const [user_password, setuser_password] = useState('');
   const [error, setError] = useState('');
@@ -18,7 +16,7 @@ const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/user/login', {
+      const response = await fetch('http://localhost:4000/services/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,8 +32,10 @@ const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        alert('로그인 성공');
         navigate('/'); // 홈으로 이동
+        setGlobalVariable(user_id);
+        setRefresh(true);
+        alert({user_id}+'님, 환영합니다.');
       } else {
         setError(data.message || '로그인 실패');
       }
@@ -75,10 +75,11 @@ const Login: React.FC<HeaderProps> = ({login,changeLogin}) => {
         />
       </div>
       <br />
-      <button className="loginbuttons" id='registerbutton' onClick={() => navigate('/join')}>회원가입</button>
-      <br/>
-      <button className='loginbuttons' id='backbutton' onClick={() => navigate('/')}>뒤로가기</button>
       <button className='loginbuttons' id='loginbutton' type="submit">로그인</button>
+      <br/>
+      <button className="loginbuttons" id='registerbutton' onClick={() => navigate('/join')}>회원가입</button>
+      <button className='loginbuttons' id='backbutton' onClick={() => navigate('/')}>뒤로가기</button>
+      
       {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </form>
