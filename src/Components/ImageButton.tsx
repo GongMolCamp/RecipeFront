@@ -6,7 +6,7 @@ import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 
 interface ButtonProps {
   food: JSON;
-  user_id : string;
+  from : string;
 }
 
 
@@ -28,7 +28,9 @@ const fetchlikedQuery = async (userid: string, foodId: any) => {
 };
 
 const ImageButton : React.FC<ButtonProps> = (props) => {
-  const userid = props.user_id;
+  const { globalVariable, setGlobalVariable } = useGlobal();
+  
+  const from = props.from;
   const item = JSON.parse(JSON.stringify(props.food));
   const foodId = item["food_id"];
   const [clicked, setCliked] = useState(false);
@@ -51,10 +53,9 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
       // 비동기 작업을 useEffect 내에서 처리
       const loadImage = async () => {
         try {
-          var result = await fetchlikedQuery(userid, foodId);
+          var result = await fetchlikedQuery(globalVariable, foodId);
           
           result = await JSON.parse(JSON.stringify(result));
-          console.log(result["item"]);
           if (!result["item"]) setCliked(false);
           else setCliked(true);
 
@@ -63,7 +64,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
         }
       };
       loadImage();
-    }, [props.user_id]);
+    });
   
   const handleClick = async() => {
 
@@ -76,7 +77,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_id: userid, food_id: foodId }),
+        body: JSON.stringify({ user_id: globalVariable, food_id: foodId }),
       });
     
       if (!response.ok) {
@@ -90,7 +91,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_id: userid, food_id: foodId }),
+        body: JSON.stringify({ user_id: globalVariable, food_id: foodId }),
       });
     
       if (!response.ok) {
@@ -98,7 +99,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
       }
     }
     setCliked(!clicked);
-    setRefresh(true);
+    setRefresh(from);
   };
 
   return (

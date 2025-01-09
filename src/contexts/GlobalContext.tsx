@@ -12,8 +12,8 @@ const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 // 전역 상태의 타입 정의
 interface GlobalContext1Type {
-  refresh: boolean;
-  setRefresh: (value: boolean) => void;
+  refresh: string;
+  setRefresh: (value: string) => void;
 }
 
 // 기본값은 undefined로 설정하여 제공자가 없으면 에러를 발생시킵니다.
@@ -27,7 +27,7 @@ interface GlobalProviderProps {
 export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   //변경필요
   const [globalVariable, setGlobalVariable] = useState<string>('testid');
-  const [refresh, setRefresh] = useState<boolean>(false);
+  const [refresh, setRefresh] = useState<string>("");
   return (
     <GlobalContext.Provider value={{ globalVariable, setGlobalVariable }}>
       <GlobalContext1.Provider value={{ refresh, setRefresh }}>

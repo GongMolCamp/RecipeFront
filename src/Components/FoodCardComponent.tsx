@@ -4,7 +4,8 @@ import ImageButton from './ImageButton';
 interface Food {
   item: JSON;
   
-  user_id : string;
+  from : string;
+  
 }
 
 
@@ -12,7 +13,7 @@ const FoodCardComponent : React.FC<Food> = (props) => {
   const data = JSON.parse(JSON.stringify(props.item));
   const foodname =  data['food_name'];
   const foodsrc = data['food_image_src'];
-  const user_id = props.user_id;
+  const from = props.from;
 
 
   return (
@@ -27,7 +28,7 @@ const FoodCardComponent : React.FC<Food> = (props) => {
           <h2 className="card-title">{foodname}</h2>
           <div className='card-like-part'>
             <h2 className="liked-title">{data["food_liked"]}</h2>
-            <ImageButton food={data} user_id={user_id}></ImageButton>
+            <ImageButton food={data} from={from}></ImageButton>
           </div>
         </div>
         <button onClick={()=>{}} className="card-button">레시피 보러가기</button>
