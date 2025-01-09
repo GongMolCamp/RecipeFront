@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 type IngredientInputModalProps = {
+    userid: string
     reftype: number;
     closeModal: () => void;
     onUpdate: () => void; // 데이터 업데이트 콜백
 };
 
-const IngredientModal: React.FC<IngredientInputModalProps> = ({ reftype, closeModal, onUpdate }) => {
+const IngredientModal: React.FC<IngredientInputModalProps> = ({ userid, reftype, closeModal, onUpdate }) => {
     const inputTitles = [
         '육류',
         '해산물',
@@ -15,7 +16,6 @@ const IngredientModal: React.FC<IngredientInputModalProps> = ({ reftype, closeMo
         reftype === 1 ? '조리된 음식 및 반찬' : '간식류',
         '기타'
     ];
-
     const [inputs, setInputs] = useState<{ [key: string]: string }>({});
 
     // 입력값 변경 핸들러
@@ -37,7 +37,7 @@ const IngredientModal: React.FC<IngredientInputModalProps> = ({ reftype, closeMo
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        id: "1", // 고정된 값
+                        id: {userid}, // 고정된 값
                         reftype: reftype, // reftype 전송
                         name: name,
                     }),

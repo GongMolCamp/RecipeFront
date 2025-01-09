@@ -26,18 +26,18 @@ const Ingredient: React.FC = () => {
   const [ingredientTopList, setTopList] = useState<JSX.Element[]>([]);
   const [ingredientBottomList, setBottomList] = useState<JSX.Element[]>([]);
   const [data, setData] = useState<any>(null); // 데이터를 상태로 관리
+  const [userid, serId] = useState<string>("1");
 
   const openModal = (reftype: number) => {
     setModal(reftype);
   };
-
   const closeModal = () => {
     setModal(0);
   };
 
   const fetchIngredients = async () => {
     try {
-      const response = await fetch('http://localhost:4000/services/ingredient?id=1');
+      const response = await fetch(`http://localhost:4000/services/ingredient?id=${userid}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -80,6 +80,32 @@ const Ingredient: React.FC = () => {
     fetchIngredients(); // 데이터를 다시 fetch
   };
 
+  const handleDelete = async (name: string) => {
+    try {
+        const response = await fetch('http://localhost:4000/services/ingredient', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: userid, // 고정된 값
+                reftype: modal, // 현재 모달의 타입
+                name: name,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        alert('재료가 삭제되었습니다.');
+        handleDataUpdate(); // 데이터 업데이트 요청
+        closeModal();
+    } catch (error) {
+        console.error('Error deleting ingredient:', error);
+        alert('삭제에 실패했습니다.');
+    }
+};
+
   const renderModal = () => {
     switch (modal) {
       case 0:
@@ -88,6 +114,7 @@ const Ingredient: React.FC = () => {
       case 2:
         return (
           <IngredientInputModal 
+            userid = {userid}
             closeModal={closeModal} 
             reftype={modal} 
             onUpdate={handleDataUpdate} // 데이터 업데이트 콜백 전달
@@ -97,9 +124,11 @@ const Ingredient: React.FC = () => {
       case 4:
         return (
           <IngredientDeleteModal 
-            closeModal={closeModal} 
-            reftype={modal} 
-          />);
+              closeModal={closeModal} 
+              reftype={modal} 
+              onDelete={handleDelete} // 삭제 콜백 전달
+          />
+        );
       default:
         return <></>;
     }
