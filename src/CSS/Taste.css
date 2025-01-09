@@ -1,0 +1,132 @@
+.Ingredient-container {
+    font-family: "Jua", sans-serif;
+    margin: 0 auto;
+    width: 90%;
+    height: 70vh;
+    margin-top: 25px;
+    display: flex;
+    background-color: #f5f5f5; /* 배경색 조정 */
+    justify-content: space-around;
+    border-radius: 20px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.ingredient{
+    width: 100%; /* 너비 조정 */
+    height: 100%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #B2D6FF; /* 배경색 조정 */
+    border-radius: 30px;
+    font-size: 2rem;
+    transition: transform 0.3s; /* 호버 효과 추가 */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4); /* 그림자 설정 */
+}
+
+.refrigerator:hover {
+    transform: scale(1.05); /* 호버 시 확대 효과 */
+}
+
+.ingredient-top {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    border: 3px solid black;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-color: #7AB8FF; /* 상단 색상 조정 */
+}
+
+.ingredient-bottom {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+    border-top: 0px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.ingredient-top{
+    display: flex;
+    justify-content: center;  /* 가로 중앙 정렬 */
+    align-items: center;
+    padding : 10px;
+}
+.ingredient-bottom{
+    width: 100%;
+    display: flex;
+    justify-content:first baseline;
+    align-items: first baseline;
+    padding : 10px;
+}
+
+.input-title {
+    width: 100%;
+    height: auto; /* 높이를 자동으로 조정 */
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center;
+    font-size: 20px;
+    padding: 10px; /* 여백 추가 */
+}
+.input-div {
+    width: 90%; /* 적당한 너비 설정 */
+    height: 60%; /* 고정 높이 설정 */
+    background-color: white; /* 흰색 배경 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    display: flex;
+    margin: 0 auto;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    padding: 5px; /* 내부 여백 추가 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}
+
+
+.button-text{
+    font-size: 1.5rem;
+}
+
+.button{
+    margin-left: 10px;
+    width: 13%;
+    height: 50px;
+    background-color : #7AB8FF;
+    border-radius: 20px;
+}
+  
+  /* 기본 입력 필드 스타일 */
+  .input-field {
+    width: 85%;
+    height: 50px;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* 입력 필드에 포커스가 있을 때 */
+  .input-field:focus {
+    border-color: #5e72e4;
+    box-shadow: 0 0 10px rgba(94, 114, 228, 0.5);
+  }
+  
+  /* 입력 필드의 placeholder 스타일 */
+  .input-field::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  
+  /* 입력 필드의 hover 상태 */
+  .input-field:hover {
+    border-color: #777;
+  }
+  

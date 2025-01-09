@@ -7,23 +7,16 @@ import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 
 const fetchRecommendQuery = async (prefer : string, user_id : string) => {
   const session_data = sessionStorage.getItem("rrr");
-  const response = await fetch((session_data == null)?
-  'http://localhost:4000/services/api/ask_recipe':
-  'http://localhost:4000/services/food/recommend',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: (session_data == null)?
-      JSON.stringify({ id: user_id, preference : prefer }):
-      JSON.stringify({food_data : JSON.parse(session_data)}),
-    });
+  if (session_data == null) {
+    const response = await fetch('http://localhost:4000/services/food/popular');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    const datas = await response.json();
-    return datas;
+    return response.json();
+  }
+  else {
+    console.log("session_data not null");
+  }
 };
   
 function useRecommendQuery (prefer : string, user_id : string) {
