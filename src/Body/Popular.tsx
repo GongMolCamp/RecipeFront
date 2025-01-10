@@ -16,7 +16,7 @@ const fetchPopularQuery = async () => {
 function usePopularQuery () {
   
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: ['posts'],  // 데이터 캐시 키
+    queryKey: ['popular'],  // 데이터 캐시 키
     queryFn: fetchPopularQuery, // 데이터를 가져오는 함수
   });
 

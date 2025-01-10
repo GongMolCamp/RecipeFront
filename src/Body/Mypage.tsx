@@ -21,7 +21,7 @@ const Mypage: React.FC = () => {
     const logout = () => {
         alert('로그아웃 되었습니다.');
           setGlobalVariable('');
-          setRefresh(false);
+          //setRefresh(false);
           navigate('/');
     }
 

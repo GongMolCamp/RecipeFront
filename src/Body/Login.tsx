@@ -34,7 +34,7 @@ const Login: React.FC = () => {
       if (response.ok && data.success) {
         navigate('/'); // 홈으로 이동
         setGlobalVariable(user_id);
-        setRefresh(true);
+        //setRefresh(true);
         alert(user_id+'님, 환영합니다.');
       } else {
         setError(data.message || '로그인 실패');

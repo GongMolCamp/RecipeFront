@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     if(result){
       alert('로그아웃 되었습니다.');
       setGlobalVariable('');
-      setRefresh(false);
+      //setRefresh(false);
     }
   }
   

@@ -8,35 +8,59 @@ import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 const fetchRecommendQuery = async (prefer : string, user_id : string) => {
   const session_data = sessionStorage.getItem("rrr");
   if (session_data == null) {
-    const response = await fetch('http://localhost:4000/services/food/popular');
+    const response = await fetch('http://localhost:4000/services/api/ask_recipe',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: user_id, preference : prefer })
+      });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.json();
+    const return_val = response.json();
+    return return_val;
   }
   else {
-    console.log("session_data not null");
+    const response = await fetch('http://localhost:4000/services/food/recommend',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ food_data : JSON.parse(session_data) })
+      });
+    
+      const return_val = response.json();
+      return return_val;
   }
 };
   
 function useRecommendQuery (prefer : string, user_id : string) {
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: ['posts'],  // 데이터 캐시 키
+    queryKey: ['recommend'],  // 데이터 캐시 키
     queryFn: () => fetchRecommendQuery(prefer, user_id), // 데이터를 가져오는 함수
   });
 
   if (isLoading) {
     return <div>추천 음식을 생각해보는중입니다!</div>;
   }
+
   if (isError) {
     return <div>Recommend Error: {error.message}</div>;
   }
-  
-  const data_tmp = data["item"];
-  const data_list = data_tmp.map(
-      (item : JSON, idx : number) => 
-        (<FoodCardComponent item={item} from="recommend"></FoodCardComponent>));
-  return data_list;
+
+  //if (data){
+    console.log("end");
+    const data_tmp = data["item"];
+    const data_list = data_tmp.map(
+        (item : JSON, idx : number) => 
+          (<FoodCardComponent item={item} from="recommend"></FoodCardComponent>));
+    sessionStorage.setItem("rrr", JSON.stringify(data));
+        
+    return data_list;
+  //}
 }
 
 const Recommend: React.FC = () => {
@@ -48,7 +72,7 @@ const Recommend: React.FC = () => {
 
   if (refresh == "recommend") {
     console.log("refreshed")
-    //navigate(0);
+    navigate(0);
     setRefresh("");
   }
 
