@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import '../CSS/Home.css';
 
 const Home: React.FC = () => {
+  sessionStorage.setItem("LocationData", "");
   return (
     <div className='Home'>
       <div className='Home-Title'><span className='Pink'>"냉장고를 부탁해"</span> 란?</div>

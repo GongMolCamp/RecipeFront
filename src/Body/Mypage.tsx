@@ -17,6 +17,11 @@ const Mypage: React.FC = () => {
     const [ user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
+    const toHome = () => {
+        sessionStorage.setItem("LocationData", JSON.stringify("Home"));
+        navigate('/');
+    }
+
     const logout = () => {
         alert('로그아웃 되었습니다.');
         sessionStorage.removeItem("user_id");
@@ -82,7 +87,7 @@ const Mypage: React.FC = () => {
                 <div className="mypage-buttons">
                     <button className="update-btn" onClick={()=>{navigate('/update')}}>정보수정</button>
                     <button className="logout-btn" onClick={()=>logout()}>로그아웃</button>
-                    <button className="home-btn" onClick={()=>{navigate('/');}}>홈으로</button>
+                    <button className="home-btn" onClick={toHome}>홈으로</button>
                 </div>
                 </div>
             </div>

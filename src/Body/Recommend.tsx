@@ -69,8 +69,7 @@ const Recommend: React.FC = () => {
   const {preference} = state;
   const { refresh, setRefresh } = useRefresh();
   const navigate = useNavigate();
-
-  if (refresh == "recommend") {
+  if (refresh === "recommend") {
     console.log("refreshed")
     navigate(0);
     setRefresh("");

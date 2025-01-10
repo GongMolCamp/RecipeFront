@@ -54,7 +54,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
     });
   
   const handleClick = async() => {
-
+    sessionStorage.setItem("LocationData", from + JSON.stringify(clicked) + foodId);
     console.log(globalVariable);
     if (clicked) {
       // 좋아요 누른 상태 => 좋아요 취소

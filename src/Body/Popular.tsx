@@ -40,7 +40,7 @@ const Popular: React.FC = () => {
   const {globalVariable, setGlobalVariable} = useGlobal();
   const { refresh, setRefresh } = useRefresh();
   console.log(globalVariable);
-  if (refresh) {
+  if (refresh==="popular") {
     navigate(0);
     setRefresh("");
   }

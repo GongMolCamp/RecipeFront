@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const Taste: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");  // 상태의 타입을 string으로 지정
   const navigate = useNavigate();
-  //sessionStorage.removeItem('recommendList');
+  
+  sessionStorage.setItem('locationData', "recommend");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setInputValue(value);
