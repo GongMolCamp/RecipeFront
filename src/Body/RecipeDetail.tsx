@@ -9,10 +9,14 @@ const RecipeDetail: React.FC = () => {
         <div className='detail-title-name'>레시피 이름</div>
         <div className='detail-title-like'>x명이 좋아합니다</div>
       </div>
-      <div className='detail-recipe'>
-        <div className='detail-recipe-title'>레시피 순서</div>
-        <div className='detail-recipe-list'>
-          레시피 순서 ...
+      <div className='detail-content'>
+        <div className='detail-ingredient'>
+          <div className='detail-ingredient-title'>필요한 재료</div>
+          <div className='detail-ingredient-list'>재료 리스트</div>
+        </div>
+        <div className='detail-recipe'>
+          <div className='detail-recipe-title'>레시피 순서</div>
+          <div className='detail-recipe-list'>레시피 ...</div>
         </div>
       </div>
     </div>
