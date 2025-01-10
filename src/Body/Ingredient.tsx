@@ -75,7 +75,7 @@ const Ingredient: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.length > 0) {
       const topList = data["item"]
         .filter((item: any) => item["ingredient_type"] === 1)
         .map((item: any) => (
@@ -97,6 +97,10 @@ const Ingredient: React.FC = () => {
           />
         ));
       setBottomList(bottomList);
+    }
+    else {
+      setTopList([<div className='flex justify-center'>로그인하세요</div>])
+      setBottomList([<div className='flex justify-center'>로그인하세요</div>])
     }
   }, [data]);
 
@@ -120,19 +124,13 @@ const Ingredient: React.FC = () => {
           />
         );
       case 3:
+      case 4:
         return (
           <FullIngredientModal 
             key={globalVariable}
-            reftype = {1} 
+            reftype = {modal-2} 
             refdata = {ingredientTopList} 
             closeModal={closeModal}/>);
-      case 4:
-        return (<FullIngredientModal 
-          key={globalVariable}
-          reftype = {2} 
-          refdata = {ingredientBottomList}
-          closeModal={closeModal}
-          />);
       default:
         return <></>;
     }
