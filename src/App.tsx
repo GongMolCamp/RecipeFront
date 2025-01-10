@@ -11,6 +11,7 @@ import Taste from './Body/Taste';
 import RecipeDetail from './Body/RecipeDetail';
 import Recommend from './Body/Recommend';
 import Mypage from './Body/Mypage';
+import Update from './Body/Update';
 
 
 
@@ -34,6 +35,7 @@ const App: React.FC = () => {
           <Route path='/taste' element={<Taste />} />
           <Route path='/recipeDetail' element={<RecipeDetail />} />
           <Route path='/recommend' element={<Recommend />} />
+          <Route path='/update' element={<Update />} />
         </Routes>
       </BrowserRouter>
   );

@@ -3,7 +3,7 @@
     width: 800px; /* 컨테이너 너비 */
     margin: 50px auto; /* 화면 중앙 정렬 */
     padding: 30px;
-    background-color: #ffc0cb; /* 연분홍 배경색 */
+    background-color: #B2D6FF;
     border-radius: 20px; /* 둥근 모서리 */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 그림자 */
     font-family: "Jua", sans-serif;
@@ -22,12 +22,7 @@
   .jointitle {
     font-size: 40px;
     font-weight: bold;
-    color: red;
-    text-shadow: 
-      -1px -1px 0 #000, 
-       1px -1px 0 #000, 
-      -1px  1px 0 #000, 
-       1px  1px 0 #000; /* 외곽선 효과 */
+    color: blue;
     text-align: center;
     margin-bottom: 20px;
   }
