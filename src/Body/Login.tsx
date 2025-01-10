@@ -7,7 +7,6 @@ import '../CSS/Login.css';
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const { globalVariable, setGlobalVariable } = useGlobal();
-  const { refresh, setRefresh} = useRefresh();
   const [user_id, setuser_id] = useState('');
   const [user_password, setuser_password] = useState('');
   const [error, setError] = useState('');

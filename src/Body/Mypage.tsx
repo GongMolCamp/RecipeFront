@@ -14,15 +14,14 @@ interface User {
 const Mypage: React.FC = () => {
     const navigate = useNavigate();
     const { globalVariable, setGlobalVariable } = useGlobal();
-    const { refresh, setRefresh} = useRefresh();
     const [ user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
     const logout = () => {
         alert('로그아웃 되었습니다.');
-          setGlobalVariable('');
-          //setRefresh(false);
-          navigate('/');
+        sessionStorage.removeItem("user_id");
+        setGlobalVariable('');
+        navigate('/');
     }
 
     useEffect(()=>{
@@ -57,7 +56,7 @@ const Mypage: React.FC = () => {
         return <p>로딩 중...</p>;
       }
     
-      if (!refresh) {
+      if (!globalVariable) {
         return <p>로그인이 필요합니다.</p>;
       }
     
@@ -65,7 +64,7 @@ const Mypage: React.FC = () => {
 
     return (
         
-        <><div>{refresh ?
+        <><div>{globalVariable ?
             (
                 <div className='mypage-body'>
                 <div className="mypage-container">

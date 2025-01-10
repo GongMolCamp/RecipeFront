@@ -34,7 +34,7 @@ const Join: React.FC = () => {
 
       if (response.ok && data.success) {
         alert('회원가입 성공');
-        navigate('/'); // 홈으로 이동
+        navigate('/login'); // 로그인으로 이동
       } else {
         setError(data.message || '회원가입 실패');
       }

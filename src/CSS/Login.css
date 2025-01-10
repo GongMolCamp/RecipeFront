@@ -4,7 +4,7 @@
     height: 100vh; /* 화면 전체 높이 */
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
+    align-items: flex-start; /* 세로 중앙 정렬 */
     background-color: white; /* 연분홍 배경 */
     font-family: "Jua", sans-serif;
   }
@@ -12,6 +12,7 @@
   /* 로그인 폼 컨테이너 */
   .loginform {
     width: 800px; /* 폼의 가로 크기 */
+    margin-top: 30px;
     background-color: #B2D6FF; /* 폼 배경색 */
     border-radius: 20px; /* 둥근 모서리 */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
