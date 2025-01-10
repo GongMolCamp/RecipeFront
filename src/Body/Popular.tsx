@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../CSS/Popular.css';
 import FoodCardComponent from '../Components/FoodCardComponent';
 import { useQuery } from '@tanstack/react-query';
-import { useRefresh } from '../contexts/GlobalContext';
+import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 const fetchPopularQuery = async () => {
   
@@ -37,7 +37,9 @@ function usePopularQuery () {
 
 const Popular: React.FC = () => {
   const navigate = useNavigate();
+  const {globalVariable, setGlobalVariable} = useGlobal();
   const { refresh, setRefresh } = useRefresh();
+  console.log(globalVariable);
   if (refresh) {
     navigate(0);
     setRefresh("");

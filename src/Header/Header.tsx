@@ -39,7 +39,7 @@ const Header: React.FC = () => {
         <img className='w-64' src={img} alt="냉장고를 부탁해 로고" />
         <p className='text-5xl text-center Header-Logo'>냉장고를 부탁해</p>
         {
-        refresh ? (<p>{globalVariable}님, 안녕하세요</p>) :(null)
+        globalVariable!='' ? (<p>{globalVariable}님, 안녕하세요</p>) :(null)
         }
         
       </div>
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
 
         <div>
           {
-            refresh ? 
+            globalVariable!='' ? 
               (<div className='flex h-[100%]'>
                 <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/mypage', 'login')}>마이페이지</div>
                 <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => logout()}>로그아웃</div>

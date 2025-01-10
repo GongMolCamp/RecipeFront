@@ -35,20 +35,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
   const foodId = item["food_id"];
   const [clicked, setCliked] = useState(false);
   const { refresh, setRefresh } = useRefresh();
-/*
-  const { data, error, isLoading, isError } = useQuery({
-      queryKey: ['posts'],  // 데이터 캐시 키
-      queryFn: () => fetchlikedQuery(userid, foodId), // 데이터를 가져오는 함수
-    });
-  
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
-  
-    if (isError) {
-      return <div>Error: {error.message}</div>;
-    }
-  */
+
   useEffect(() => {
       // 비동기 작업을 useEffect 내에서 처리
       const loadImage = async () => {
@@ -68,8 +55,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
   
   const handleClick = async() => {
 
-    
-    
+    console.log(globalVariable);
     if (clicked) {
       // 좋아요 누른 상태 => 좋아요 취소
       const response = await fetch('http://localhost:4000/services/like/delete', {
@@ -97,6 +83,7 @@ const ImageButton : React.FC<ButtonProps> = (props) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+      console.log(globalVariable);
     }
     setCliked(!clicked);
     setRefresh(from);
