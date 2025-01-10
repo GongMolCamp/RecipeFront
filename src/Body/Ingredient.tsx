@@ -1,7 +1,6 @@
 import React, { useState, useEffect, JSX } from 'react';
 import '../CSS/Ingredient.css';
 import IngredientInputModal from '../Components/IngredientInputModal';
-import { useQuery } from '@tanstack/react-query';
 import FullIngredientModal from '../Components/FullIngredientModal';
 import { useGlobal } from '../contexts/GlobalContext';
 
@@ -30,11 +29,7 @@ const IngredientDetail: React.FC<IngredientDetailProps> = (props) => {
         });
         if (!response.ok) {
           const errorData = await response.json();
-          if (errorData.error === 'Duplicate entry') {
-              alert(`'${ingredient_name}'은(는) 이미 추가된 항목입니다.`);
-          } else {
-              throw new Error('Unknown error');
-          }
+          throw new Error(errorData.error);
         }
       } catch(error){
         console.error('Error:', error);
@@ -157,12 +152,12 @@ const Ingredient: React.FC = () => {
             <span>재료추가</span>
           </div>
         </div>
-        <div className='ingredient'>
-          <div className='ingredient-top'>
+        <div className='ingredient-container'>
+          <div className='top-ingredient'>
             {ingredientTopList}
             <div className='dot' onClick={() => openModal(3)}>...</div>  
           </div>
-          <div className='ingredient-bottom'>
+          <div className='bottom-ingredient'>
             {ingredientBottomList}
             <div className='dot' onClick={() => openModal(4)}>...</div>  
           </div>

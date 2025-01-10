@@ -26,14 +26,12 @@
     cursor : pointer;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4); /* 그림자 설정 */
 }
-.ingredient{
+.ingredient-container{
     width: 65%; /* 너비 조정 */
     height: 100%;
     margin: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-color: #B2D6FF; /* 배경색 조정 */
     border-radius: 30px;
     font-size: 1.5rem;
@@ -45,7 +43,7 @@
     transform: scale(1.05); /* 호버 시 확대 효과 */
 }
 
-.refrigerator-top, .ingredient-top {
+.refrigerator-top, .top-ingredient {
     width: 100%;
     height: 30%;
     display: flex;
@@ -54,7 +52,7 @@
     border-top-right-radius: 30px;
     background-color: #7AB8FF; /* 상단 색상 조정 */
 }
-.refrigerator-bottom, .ingredient-bottom {
+.refrigerator-bottom, .bottom-ingredient {
     width: 100%;
     height: 70%;
     display: flex;
@@ -67,7 +65,7 @@
     align-items: center;
     justify-content: center;
 }
-.ingredient-top, .ingredient-bottom{
+.top-ingredient, .bottom-ingredient{
     display: flex;
     padding: 10px;
     flex-wrap: wrap; /* 요소가 다음 줄로 넘어가도록 설정 */
@@ -80,7 +78,6 @@
     display: inline-block; /* 텍스트 길이에 맞게 크기 조정 */
     white-space: nowrap; /* 텍스트 줄바꿈 방지 */
     text-overflow: ellipsis; /* ... 표시 */
-    overflow: hidden; /* 넘치는 텍스트 숨김 */
     padding: 5px 10px; /* 내부 여백 */
     background-color: #e0f7fa; /* 배경색 */
     border-radius: 5px; /* 모서리 둥글게 */
@@ -199,12 +196,12 @@
 }
 
 
-.button-container{
+.input-button-container{
     width: 10%;
     height: 10%;
     margin-bottom : 5px;
 }
-.button{
+.input-button{
     width: 100%;
     height: 100%;
     background-color : #B2D6FF;
