@@ -85,8 +85,8 @@ const IngredientModal: React.FC<IngredientInputModalProps> = ({ userid, reftype,
                         </div>
                     ))}
                 </div>
-                <div className="button-container">
-                    <button className="button" onClick={handleButtonClick}>추가하기</button>
+                <div className="input-button-container">
+                    <button className="input-button" onClick={handleButtonClick}>추가하기</button>
                 </div>
             </div>
         </div>
