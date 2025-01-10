@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGlobal, useRefresh } from '../contexts/GlobalContext';
+import { useGlobal } from '../contexts/GlobalContext';
 import '../CSS/Header.css';
 import img from '../imgs/logo.png';
 
@@ -52,11 +52,11 @@ const Header: React.FC = () => {
           {
             globalVariable!='' ? 
               (<div className='flex h-[100%]'>
-                <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => handleLoginClick('/mypage', 'login')}>마이페이지</div>
-                <div className={activeMenu === 'login' ? 'mypage active' : 'mypage non-active'} onClick={() => logout()}>로그아웃</div>
+                <div className={activeMenu === 'mypage' ? 'active' : 'non-active'} onClick={() => handleLoginClick('/mypage', 'mypage')}>마이페이지</div>
+                <div className={activeMenu === 'login' ? 'active' : 'non-active'} onClick={() => logout()}>로그아웃</div>
               </div>
               ) : 
-              (<div className={activeMenu === 'login' ? 'login active' : 'login non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그인</div>)
+              (<div className={activeMenu === 'login' ? 'active' : 'non-active'} onClick={() => handleLoginClick('/login', 'login')}>로그인</div>)
           }
         </div>
 
