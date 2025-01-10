@@ -26,7 +26,9 @@ interface GlobalProviderProps {
 
 export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   //변경필요
-  const [globalVariable, setGlobalVariable] = useState<string>('');
+  const tmp = sessionStorage.getItem("user_id");
+  const userId = tmp==null ? '' : tmp;
+  const [globalVariable, setGlobalVariable] = useState<string>(userId);
   const [refresh, setRefresh] = useState<string>("");
   return (
     <GlobalContext.Provider value={{ globalVariable, setGlobalVariable }}>

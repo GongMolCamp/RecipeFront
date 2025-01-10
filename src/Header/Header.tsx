@@ -14,7 +14,6 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState<string>('');
   const { globalVariable, setGlobalVariable } = useGlobal();
-  const { refresh, setRefresh} = useRefresh();
 
   const handleMenuClick = (path: string, menuName: string) => {
     setActiveMenu(menuName);
@@ -28,6 +27,7 @@ const Header: React.FC = () => {
     const result = window.confirm('로그아웃 하시겠습니까??');
     if(result){
       alert('로그아웃 되었습니다.');
+      sessionStorage.removeItem("user_id");
       setGlobalVariable('');
       //setRefresh(false);
     }
