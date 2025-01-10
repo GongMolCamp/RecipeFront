@@ -3,14 +3,8 @@ import '../CSS/Ingredient.css';
 import IngredientInputModal from '../Components/IngredientInputModal';
 import { useQuery } from '@tanstack/react-query';
 import FullIngredientModal from '../Components/FullIngredientModal';
+import { useGlobal } from '../contexts/GlobalContext';
 
-const fetchIngredientQuery = async () => {
-  const response = await fetch('http://localhost:4000/services/ingredient?id=1'); // id 파라미터 추가
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
-};
 
 type IngredientDetailProps = {
   item: JSON;
@@ -60,8 +54,7 @@ const Ingredient: React.FC = () => {
   const [ingredientTopList, setTopList] = useState<JSX.Element[]>([]);
   const [ingredientBottomList, setBottomList] = useState<JSX.Element[]>([]);
   const [data, setData] = useState<any>(null); // 데이터를 상태로 관리
-  const [userid, serId] = useState<string>("1");
-
+  const { globalVariable, setGlobalVariable } = useGlobal();
   const openModal = (reftype: number) => {
     setModal(reftype);
   };
@@ -71,7 +64,7 @@ const Ingredient: React.FC = () => {
 
   const fetchIngredients = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/services/ingredient`);
+      const response = await fetch(`http://localhost:4000/services/ingredient?id=${globalVariable}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -92,7 +85,7 @@ const Ingredient: React.FC = () => {
         .filter((item: any) => item["ingredient_type"] === 1)
         .map((item: any) => (
           <IngredientDetail 
-            //key={item["ingredient_id"]}
+            key={globalVariable}
             item={item} 
             fetch = {fetchIngredients}
           />
@@ -103,7 +96,7 @@ const Ingredient: React.FC = () => {
         .filter((item: any) => item["ingredient_type"] === 2)
         .map((item: any) => (
           <IngredientDetail 
-            key={item["ingredient_id"]}
+            key={globalVariable}
             item={item} 
             fetch = {fetchIngredients}
           />
@@ -124,19 +117,23 @@ const Ingredient: React.FC = () => {
       case 2:
         return (
           <IngredientInputModal 
-            userid = {userid}
+            key={globalVariable}
+            userid = {globalVariable}
             closeModal={closeModal} 
             reftype={modal} 
             onUpdate={handleDataUpdate} // 데이터 업데이트 콜백 전달
           />
         );
       case 3:
-        return (<FullIngredientModal 
-          reftype = {1} 
-          refdata = {ingredientTopList} 
-          closeModal={closeModal}/>);
+        return (
+          <FullIngredientModal 
+            key={globalVariable}
+            reftype = {1} 
+            refdata = {ingredientTopList} 
+            closeModal={closeModal}/>);
       case 4:
         return (<FullIngredientModal 
+          key={globalVariable}
           reftype = {2} 
           refdata = {ingredientBottomList}
           closeModal={closeModal}
