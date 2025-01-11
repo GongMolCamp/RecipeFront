@@ -4,6 +4,7 @@ import FoodCardComponent from '../Components/FoodCardComponent';
 import { useQuery } from '@tanstack/react-query';
 import { useGlobal, useRefresh } from '../contexts/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+
 const fetchPopularQuery = async () => {
   
   const response = await fetch('http://localhost:4000/services/food/popular');

@@ -46,74 +46,76 @@ const Join: React.FC = () => {
 
   return (
     <div className='joincontainer'>
-    <form className='joinform' onSubmit={handleRegister}>
-      <h1 className='jointitle'>회원가입</h1>
-      <label>아이디</label>
-      <input
-        type="text"
-        value={user_id}
-        onChange={(e) => setuser_id(e.target.value)}
-        placeholder="Enter your ID"
-        required
-      />
-      <br />
-      <label>비밀번호</label>
-      <input
-        type="password"
-        value={user_password}
-        onChange={(e) => setuser_password(e.target.value)}
-        placeholder="Enter your Password"
-        required
-      />
-      <br />
-      <label>이메일</label>
-      <input
-        type="email"
-        value={user_email}
-        onChange={(e) => setuser_email(e.target.value)}
-        placeholder="Enter your Email"
-        required
-      />
-      <br />
-      <div className='userpreferneces'>
-        <div className='userpreferneceslabels'>
-          <label>음식 취향1</label>
-          <select className='preferenceselect' id='dropdown1' name='user_preference1' value={user_preference1} onChange={(e) => setuser_preference1(e.target.value)} defaultValue={'한식'}>
-            <option value='한식'>한식</option>
-            <option value='중식'>중식</option>
-            <option value='일식'>일식</option>
-            <option value='양식'>양식</option>
-            <option value='기타'>기타</option>
-          </select>
-        </div>
+    <div className='joinform' onSubmit={handleRegister}>
+      <form>
+        <h1 className='jointitle'>회원가입</h1>
+        <label>아이디</label>
+        <input
+          type="text"
+          value={user_id}
+          onChange={(e) => setuser_id(e.target.value)}
+          placeholder="Enter your ID"
+          required
+        />
         <br />
-        <div className='userpreferneceslabels'>
-          <label>음식 취향2</label>
-          <select className='preferenceselect' id='dropdown2' name='user_preference2' value={user_preference2} onChange={(e) => setuser_preference2(e.target.value)} defaultValue={'한식'}>
-            <option value='한식'>한식</option>
-            <option value='중식'>중식</option>
-            <option value='일식'>일식</option>
-            <option value='양식'>양식</option>
-            <option value='기타'>기타</option>
-          </select>
-        </div>
+        <label>비밀번호</label>
+        <input
+          type="password"
+          value={user_password}
+          onChange={(e) => setuser_password(e.target.value)}
+          placeholder="Enter your Password"
+          required
+        />
         <br />
-        <div className='userpreferneceslabels'>
-          <label>음식 취향3</label>
-          <select className='preferenceselect' id='dropdown3' name='user_preference3' value={user_preference3} onChange={(e) => setuser_preference3(e.target.value)} defaultValue={'한식'}>
-            <option value='한식'>한식</option>
-            <option value='중식'>중식</option>
-            <option value='일식'>일식</option>
-            <option value='양식'>양식</option>
-            <option value='기타'>기타</option>
-          </select>
-        </div>
+        <label>이메일</label>
+        <input
+          type="email"
+          value={user_email}
+          onChange={(e) => setuser_email(e.target.value)}
+          placeholder="Enter your Email"
+          required
+        />
         <br />
-      </div>
-      <button type="submit">회원가입</button>
-      <button className='backbutton' onClick={() => navigate('/login')}>뒤로가기</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </form>
+        <div className='userpreferneces'>
+          <div className='userpreferneceslabels'>
+            <label>음식 취향1</label>
+            <select className='preferenceselect' id='dropdown1' name='user_preference1' value={user_preference1} onChange={(e) => setuser_preference1(e.target.value)} defaultValue={'한식'}>
+              <option value='한식'>한식</option>
+              <option value='중식'>중식</option>
+              <option value='일식'>일식</option>
+              <option value='양식'>양식</option>
+              <option value='기타'>기타</option>
+            </select>
+          </div>
+          <br />
+          <div className='userpreferneceslabels'>
+            <label>음식 취향2</label>
+            <select className='preferenceselect' id='dropdown2' name='user_preference2' value={user_preference2} onChange={(e) => setuser_preference2(e.target.value)} defaultValue={'한식'}>
+              <option value='한식'>한식</option>
+              <option value='중식'>중식</option>
+              <option value='일식'>일식</option>
+              <option value='양식'>양식</option>
+              <option value='기타'>기타</option>
+            </select>
+          </div>
+          <br />
+          <div className='userpreferneceslabels'>
+            <label>음식 취향3</label>
+            <select className='preferenceselect' id='dropdown3' name='user_preference3' value={user_preference3} onChange={(e) => setuser_preference3(e.target.value)} defaultValue={'한식'}>
+              <option value='한식'>한식</option>
+              <option value='중식'>중식</option>
+              <option value='일식'>일식</option>
+              <option value='양식'>양식</option>
+              <option value='기타'>기타</option>
+            </select>
+          </div>
+          <br />
+        </div>
+        <button type="submit">회원가입</button>
+        <button className='backbutton' onClick={() => navigate('/login')}>뒤로가기</button>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+      </form>
+    </div>
   </div>
   );
 };
