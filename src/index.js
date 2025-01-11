@@ -5,7 +5,15 @@ import './style.css';
 import { GlobalProvider } from './contexts/GlobalContext';
 import App from './App';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions : {
+    queries : {
+      staleTime : 0,
+      refetchInterval : 1000 * 60 * 5,
+      refetchIntervalInBackground : true,
+    }
+  }
+});
 
 const root = createRoot(document.getElementById('root'));
 root.render(
