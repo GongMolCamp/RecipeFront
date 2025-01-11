@@ -45,41 +45,35 @@ const Header: React.FC = () => {
       <div className='LogoContainer' onClick={() => handleMenuClick('/', '')}>
         <img className='w-64' src={img} alt="냉장고를 부탁해 로고" />
         <p className='text-5xl text-center Header-Logo'>냉장고를 부탁해</p>
+        {
+        globalVariable!='' ? (<p>{globalVariable}님, 안녕하세요</p>) :(null)
+        }
+        
       </div>
       <div className='Menu'>
-      {globalVariable === '' ? (
-          <>
-          <div
-            className={activeMenu === 'ingredient' ? 'active' : 'non-active'}
-          >
-          </div>
-          <div
-            className={activeMenu === 'taste' ? 'active' : 'non-active'}
-          >
-          </div>
-        </>
-        ) : (
-          <>
-            <div
-              className={activeMenu === 'ingredient' ? 'active' : 'non-active'}
-              onClick={() => handleMenuClick('/ingredient', 'ingredient')}
-            >
-              재료입력
-            </div>
-            <div
-              className={activeMenu === 'taste' ? 'active' : 'non-active'}
-              onClick={() => handleMenuClick('/taste', 'taste')}
-            >
-              추천 레시피 받기
-            </div>
-          </>
-        )}
-        <div
-          className={activeMenu === 'popular' ? 'active' : 'non-active'}
-          onClick={() => handleMenuClick('/popular', 'popular')}
-        >
-          인기 레시피
-        </div>
+        {
+          globalVariable ==='' ? (
+            <>
+            <div className={
+              activeMenu === 'ingredient' ? 'active' : 'non-active'}></div>
+            <div className={
+              activeMenu.slice(0, 9) == 'recommend' || activeMenu == 'taste' ? 'active' : 'non-active'} ></div>
+            </>
+          )
+          : (
+            <>
+            <div className={
+              activeMenu === 'ingredient' ? 'active' : 'non-active'} 
+              onClick={() => handleMenuClick('/ingredient', 'ingredient')}>재료입력</div>
+            <div className={
+              activeMenu.slice(0, 9) == 'recommend' || activeMenu == 'taste' ? 'active' : 'non-active'} 
+              onClick={() => handleMenuClick('/taste', 'taste')}>추천 레시피 받기</div>
+            </>
+          )
+        }
+        <div className={
+              activeMenu.slice(0, 7) === 'popular' ? 'active' : 'non-active'} 
+              onClick={() => handleMenuClick('/popular', 'popular')}>인기 레시피</div>
         <div>
           {
             globalVariable!='' ? 
