@@ -45,10 +45,6 @@ const Header: React.FC = () => {
       <div className='LogoContainer' onClick={() => handleMenuClick('/', '')}>
         <img className='w-64' src={img} alt="냉장고를 부탁해 로고" />
         <p className='text-5xl text-center Header-Logo'>냉장고를 부탁해</p>
-        {
-        globalVariable!='' ? (<p>{globalVariable}님, 안녕하세요</p>) :(null)
-        }
-        
       </div>
       <div className='Menu'>
         {
