@@ -21,7 +21,7 @@ const FoodCardComponent : React.FC<Food> = (props) => {
   console.log(recipe);
   const navigate = useNavigate();
   const buttonClick = () => {
-    navigate('/recipeDetail', {state : {like : food_liked, ingredient : food_ingre, recipe : recipe}});
+    navigate('/recipeDetail', {state : {like : food_liked, ingredient : food_ingre, recipe : food_recipe, from : from}});
   }
   
   return (

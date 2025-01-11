@@ -52,7 +52,7 @@ const Header: React.FC = () => {
       </div>
       <div className='Menu'>
         <div className={activeMenu === 'ingredient' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/ingredient', 'ingredient')}>재료입력</div>
-        <div className={activeMenu.slice(0, 9) === 'recommend' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/taste', 'taste')}>추천 레시피 받기</div>
+        <div className={activeMenu.slice(0, 9) == 'recommend' || activeMenu == 'taste' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/taste', 'taste')}>추천 레시피 받기</div>
         <div className={activeMenu.slice(0, 7) === 'popular' ? 'active' : 'non-active'} onClick={() => handleMenuClick('/popular', 'popular')}>인기 레시피</div>
 
         <div>

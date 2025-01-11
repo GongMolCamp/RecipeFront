@@ -64,6 +64,7 @@ function useRecommendQuery (prefer : string, user_id : string) {
 }
 
 const Recommend: React.FC = () => {
+  sessionStorage.setItem("LocationData", "recommend");
   const {globalVariable, setGlobalVariable} = useGlobal();
   const {state} = useLocation();
   const {preference} = state;

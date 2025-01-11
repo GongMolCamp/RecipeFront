@@ -75,7 +75,7 @@ const Ingredient: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (data && data.length > 0) {
+    if (data) {
       const topList = data["item"]
         .filter((item: any) => item["ingredient_type"] === 1)
         .map((item: any) => (

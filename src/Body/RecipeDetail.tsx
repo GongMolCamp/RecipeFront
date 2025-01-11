@@ -5,7 +5,8 @@ import { useLocation } from 'react-router-dom';
 
 const RecipeDetail: React.FC = () => {
   const {state} = useLocation();
-  const {like, ingredient, recipe} = state;
+  const {like, ingredient, recipe, from} = state;
+  sessionStorage.setItem("LocationData", from + "Detail");
   return (
     <div className='detail-container'>
       <div className='detail-title'>
