@@ -99,7 +99,7 @@ const Ingredient: React.FC = () => {
       setBottomList(bottomList);
     }
     else {
-      setTopList([<div className='flex justify-center'>로그인하세요</div>])
+      setTopList([<div className='f ㅜ                                                                                                                                                                                lex justify-center'>로그인하세요</div>])
       setBottomList([<div className='flex justify-center'>로그인하세요</div>])
     }
   }, [data]);
